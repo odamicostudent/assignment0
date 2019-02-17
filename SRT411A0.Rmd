@@ -1,0 +1,291 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+#Assignment 0 SRT411 Github: odamicostudent
+The purpose of this assignment was to go through the
+todo sections in a short introduction to R at 
+https://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf
+
+
+#Section 2.4 Working Directory 
+Setting a working directory in R can be done using:
+```{r, eval=FALSE}
+setwd("~")
+```
+where "~" can be replaced by the desired directory, you can also use tools --> Set working directory in RStudio
+
+#Section 2.5 Libraries
+R, like any language, has many packages. These can be listed using:
+```{r}
+library()
+```
+To install and use new packages, use:
+```{r, eval=FALSE}
+install.packages("geometry")
+library("geometry")
+```
+#Section 3.1 Calculator
+Equations can simply be typed to give answers as so:
+```{r}
+10^2 + 36
+```
+R will return your answer as seen above.
+
+#Todo task number 1
+Percentage of my life spent at college: 
+```{r}
+(2017 - 2014) / (2014 - 1999) * 100
+```
+
+The equals operator can be used to assign values to variables, simply entering the variable name will
+tell R to print the value stored in the variable, you can use the variable name in equations and re-assign the values as needed:
+```{r}
+a = 5
+a
+(a * 3)^2
+a = a *20
+a
+```
+To remove all variables from R's memory, use rm:
+```{r, eval=FALSE}
+rm(list=ls())
+```
+To remove specific variables, use their name(s) instead:
+```{r, eval=FALSE}
+rm(a)
+```
+#Todo task number 2
+Repeating the percentage question using variables:
+```{r}
+start = 2017
+compare_date = 2014
+born= 1999
+(start - compare_date) / (compare_date - born) * 100
+```
+
+#3.3 Scalars, vectors, and functions
+Scalars are single values, vectors are a row of numbers like an array.
+Before, we created a scalar value, to create a vector, 
+use the c(n1, n2, n3, ...n) function:
+```{r}
+a = c(1, 2, 3, 5, 1234, 3.1)
+a
+```
+to use the 'mean' function we use mean(n) where n is the vector to use.
+```{r}
+mean(a)
+```
+
+#Todo task number 3
+```{r}
+sum(4, 5, 8, 11)
+```
+
+#Todo task number 4
+R lets you create random normal distributions using rnorm()
+```{r}
+rnorm(100)
+```
+
+#Todo task number 5
+R allows you to access useful help pages using help()
+```{r, eval=FALSE}
+help(sqrt)
+```
+This example will output an HTML page with useful information about
+the sqrt() function
+
+#Todo task number 6
+loading firstscript.R into knitr
+```{r cache=FALSE}
+knitr::read_chunk('firstscript.R')
+```
+running the code found at firstscript.R
+```{r test-a}
+```
+
+
+#Todo task number 7
+You can create a matrix using the syntax matrix(data=v, ncol=n) where v is the 
+vector and n is the number of columns to use
+```{r}
+P = seq(from=31,to=60,by=1)
+M = matrix(data=P, ncol=5, dimnames = list(c(1, 2, 3, 4, 5, 6),c("Q", "Q", "Q", "Q", "Q")))
+M
+```
+
+#Todo task number 8
+```{r}
+for(j in c(1, 2, 3, 4, 5)){
+x1 = (as.integer(runif(100, 0, 1000)))
+x2 = (as.integer(runif(100, 0, 1000)))
+x3 = (as.integer(runif(100, 0, 1000)))
+x2 = x1+x2
+x3 = x1+x2+x3
+t = data.frame(a= x1,b=x2, c=x3)
+plot(t)
+rm(list=ls())
+}
+```
+
+The sd output can be generated using sapply(), sd has been defunct in R for
+quite some time and no longer works
+```{r}
+x1 = (as.integer(runif(100, 0, 1000)))
+x2 = (as.integer(runif(100, 0, 1000)))
+x3 = (as.integer(runif(100, 0, 1000)))
+x2 = x1+x2
+x3 = x1+x2+x3
+t = data.frame(x1,x2,x3)
+sapply(t, sd)
+rm(list=ls())
+```
+running this script a few more times produces the following outputs
+```{r, echo=FALSE}
+x1 = (as.integer(runif(100, 0, 1000)))
+x2 = (as.integer(runif(100, 0, 1000)))
+x3 = (as.integer(runif(100, 0, 1000)))
+x2 = x1+x2
+x3 = x1+x2+x3
+t = data.frame(x1,x2,x3)
+sapply(t, sd)
+rm(list=ls())
+```
+
+```{r, echo=FALSE}
+x1 = (as.integer(runif(100, 0, 1000)))
+x2 = (as.integer(runif(100, 0, 1000)))
+x3 = (as.integer(runif(100, 0, 1000)))
+x2 = x1+x2
+x3 = x1+x2+x3
+t = data.frame(x1,x2,x3)
+sapply(t, sd)
+rm(list=ls())
+```
+
+```{r, echo=FALSE}
+x1 = (as.integer(runif(100, 0, 1000)))
+x2 = (as.integer(runif(100, 0, 1000)))
+x3 = (as.integer(runif(100, 0, 1000)))
+x2 = x1+x2
+x3 = x1+x2+x3
+t = data.frame(x1,x2,x3)
+sapply(t, sd)
+rm(list=ls())
+```
+
+```{r, echo=FALSE}
+x1 = (as.integer(runif(100, 0, 1000)))
+x2 = (as.integer(runif(100, 0, 1000)))
+x3 = (as.integer(runif(100, 0, 1000)))
+x2 = x1+x2
+x3 = x1+x2+x3
+t = data.frame(x1,x2,x3)
+sapply(t, sd)
+rm(list=ls())
+```
+
+R also has lists whose elements don't have to be of equal sizes
+```{r}
+x1 = (as.integer(runif(100, 0, 1000)))
+x2 = (as.integer(runif(100, 0, 1000)))
+x3 = (as.integer(runif(100, 0, 1000)))
+x2 = x1+x2
+x3 = x1+x2+x3
+t = data.frame(a=x1,b=x2,c=x3)
+plot(t$a, type="l", ylim=range(t),
+lwd=3, col=rgb(1,0,0,0.3))
+lines(t$b, type="s", lwd=2,
+col=rgb(0.3,0.4,0.3,0.9)) 
+points(t$c, pch=20, cex=4,
+col=rgb(0,0,1,0.3))
+```
+rgb is "RedGreenBlue", it allows us to choose colors for 
+our points. lwd is line width. pch is the type of symbol to use,
+R has various symbols that can be used for points which are indexed
+by numbers, 20 is a dot symbol. cex is the scale of the symbols
+
+#todo task number 9
+```{r}
+d = read.table(file="tst2.txt", header = TRUE)
+d
+d$g = d$g*5
+d
+```
+
+#todo task number 10
+```{r}
+mean(sqrt(rnorm(100)))
+```
+I get an error, therefore, NA has to be inserted where data is
+unavailable. If you want to ignore NAs just use na.rm=TRUE as an 
+argument to ignore them.
+
+#todo task number 11
+```{r}
+dates=strptime(c(20190215, 20141205, 20190903), format="%Y%m%d") 
+presents=c(0,0,5)
+df <- data.frame(dates, presents)
+plot(df)
+```
+
+
+#todo task number 12
+```{r}
+n = seq(from=1, to=100, by=1)
+f = c()
+for(x in n){
+if(x < 5 | x > 90){
+f[x] = n[x] * 10
+}
+else{
+f[x] = n[x] * 0.1
+}  
+  
+}
+f
+```
+
+#todo task number 13
+```{r}
+func = function(arg1){
+f=c()  
+for(i in arg1){
+if(i < 5 | i > 90){
+f[i] = arg1[i] * 10
+}
+else{
+f[i] = arg1[i] * 0.1
+}  
+}
+f
+}
+func(c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
+
+```
+
+#todo task number 14
+Here, I have to prove the following footnote
+"... people  often  use  more  for-loops  than  nec-essary.The  ToDo  above  can  be  done  more  easilyand quickly without a for-loop but with regular vector-computations."
+```{r}
+x=c(1, 2, 30, 4, 10, 20, 90, 123, 14567)
+x
+f <- ifelse(x<5,x*10, ifelse(x>90, x*10, x*0.1))
+f
+```
+No For loop was needed here
+
+
+
+
+
+
+
+
+
+
+
+
+
